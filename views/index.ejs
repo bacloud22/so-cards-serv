@@ -14,27 +14,7 @@
 <html>
 
 <head>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://0.peerjs.com wss://0.peerjs.com https://demo.httprelay.io; 
-            script-src 'self' 'unsafe-inline' https://unpkg.com https://ajax.googleapis.com; 
-            object-src 'self'; 
-            img-src 'self' data: https://img.icons8.com https://cdnjs.cloudflare.com; 
-            child-src 'none';">
-
-    <meta charset='utf-8'>
-    <meta name="description" content="Share your social contacts in one card. We do not collect any data whatseoever.">
-    <meta name="keywords" content="social, media, contacts, snapchat, whatsapp, twitter, facebook">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel="icon" type="image/png" href="favicon.png" />
-    <title>Social cards on so-c.me</title>
-    <link rel='stylesheet' type='text/css' media='screen' href='/stylesheets/main.css'>
-    <script type="text/javascript" src="/javascripts/stretchy.min.js" async></script>
-    <link rel="stylesheet" type='text/css' href="/stylesheets/water.css">
-    <link rel="stylesheet" crossorigin="anonymous"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script type="text/javascript" src="/javascripts/qrcode.min.js" async></script>
-    <script type="text/javascript" src="/javascripts/share-buttons.js" async></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <%- include('partials/head'); %>
 </head>
 
 <body lang="en">
@@ -53,66 +33,7 @@
     </header>
 
     <main>
-        <details>
-            <summary><span lang="en">Some details can't hurt!</span><span lang="fr">Certains détails ne font pas de
-                    mal!</span><span lang="ar" dir="rtl">بعض التفاصيل</span></summary>
-            <table id="version-info">
-                <caption>
-                    <h3 lang="en">Disclaimers</h3>
-                    <h3 lang="fr">Non-responsabilité </h3>
-                    <h3 lang="ar" dir="rtl">إخلاء المسؤولية </h3>
-                </caption>
-                <tbody>
-                    <tr>
-                        <th scope="row"><img src="https://img.icons8.com/ios/50/000000/safe-browsing.png" /></th>
-                        <td class="disclaimers" lang="en"><small>This website do not collect "any" data whatsoever. Try
-                                going offline and it works. If you are a tech savvy check browser's developer
-                                console.</small></td>
-                        <td class="disclaimers" lang="fr"><small>Ce site Web ne collecte «aucune» donnée. Essayez de
-                                vous déconnecter et ceci fonctionne. Si vous êtes un(e) geek(ette), vérifiez la console
-                                développeur du navigateur. </small></td>
-                        <td class="disclaimers" lang="ar" dir="rtl"><small>هذا الموقع لا يجمع "أي" بيانات على الإطلاق.
-                                يمكنك قطع الاتصال بالانترنت. إذا كنت خبيرًا تقنيًا ، يمكنك التحقق من أدوات تطوير
-                                المواقع. </small></td>
-                    </tr>
-                    <tr>
-                        <th scope="row"><img src="https://img.icons8.com/wired/50/000000/one-free.png" /></th>
-                        <td class="disclaimers" lang="en"><small>It is completely free too. It does not show
-                                advertisements and will not do so in the future. You can still help me stay motivated by
-                                donating via Paypal.</small></td>
-                        <td class="disclaimers" lang="fr"><small>Ce site est également 100% gratuit. On n'affiche pas de
-                                publicités et ne le fera pas à l'avenir. Vous pouvez toujours m'aider à rester motivé en
-                                faisant un don Paypal. </small></td>
-                        <td class="disclaimers" lang="ar" dir="rtl"><small>إنه مجاني تمامًا أيضًا. لا تعرض أية إعلانات
-                                ولن تفعل ذلك في المستقبل. لا يزال بإمكانك مساعدتي لالبقاء متحمسًا من خلال التبرع عبر
-                                Paypal.</small></td>
-                    </tr>
-                    <tr>
-                        <th scope="row"><img src="https://img.icons8.com/wired/50/000000/private2.png" /></th>
-                        <td class="disclaimers" lang="en"><small>It is not encrypted. If you share your QR Code then you
-                                obviously did it. It is still secure as it does not communicate with remote
-                                servers.</small></td>
-                        <td class="disclaimers" lang="fr"><small>Ce site n'est pas chiffré. Si vous partagez votre QR
-                                Code, vous l'avez simplement fait. En revanche Il est sécurisé car il ne communique pas
-                                avec des serveurs distants.</small></td>
-                        <td class="disclaimers" lang="ar" dir="rtl"><small>هذا الموقع غير مشفر. إذا تبادلت "رمز
-                                الاستجابة السريعة" الخاص بك ، فمن الواضح أنك قمت بذلك. مع ذلك يبقى الموقع آمنًا لأنه لا
-                                يتصل بالانترنت.</small></td>
-
-                    </tr>
-                    <tr>
-                        <th scope="row"><img src="https://img.icons8.com/wired/50/000000/girl-running.png" /></th>
-                        <td class="disclaimers" lang="en"><small>We take no responsibility of usernames or links you
-                                claim is yours. We do no verification neither.</small></td>
-                        <td class="disclaimers" lang="fr"><small>Nous déclinons toute responsabilité quant aux noms
-                                d'utilisateur ou aux liens que vous prétendez être les vôtres. Nous ne faisons aucune
-                                vérification non plus. </small></td>
-                        <td class="disclaimers" lang="ar" dir="rtl"><small>نحن لا نتحمل أي مسؤولية عن أسماء المستخدمين
-                                أو الروابط التي تدعي أنها ملكك. نحن لا نقوم بالتحقق كذلك</small></td>
-                    </tr>
-                </tbody>
-            </table>
-        </details>
+        <%- include('partials/disclaimers'); %>
         <hr>
 
         <h3 lang="en">Fill in your Social Card</h3>
@@ -189,13 +110,7 @@
     </main>
 
     <footer>
-        <span lang="en">If you like my work 💪 You can help me stay motivated 🍓 : </span>
-        <span lang="fr">Si vous aimez mon travail 💪 Vous pouvez m'aider à rester motivé 🍓 : </span>
-        <span lang="ar" dir="rtl">إذا أعجبك عملي 💪 يمكنك مساعدتي في البقاء متحمسًا 🍓: </span>
-        <a href='https://www.paypal.com/donate?hosted_button_id=LF4ZVKCQ6GWWW'>Paypal</a>
-        | <a href='mailto:contact@so-c.me'><span lang="en">Email me</span><span lang="fr">Email</span><span lang="ar"
-                dir="rtl">بريد إلكتروني</span></a>
-        <!-- | <a href='https://github.com/bacloud14/so-cards'>Contribute</a> -->
+        <%- include('partials/footer'); %>
     </footer>
 
 </body>
