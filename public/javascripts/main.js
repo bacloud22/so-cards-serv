@@ -14,7 +14,7 @@ function btoaVerified(s) {
     return btoa(s) + "@" + btoa(s).hashCode()
 }
 
-const domain = "https://so-c.me/card.html?"
+const domain = "/c?"
 
 const version = 1
 var shortestString
@@ -91,42 +91,3 @@ function differForConn() {
 }
 var _id;
 var mcastUrl;
-
-// $.ajaxSetup({ xhrFields: { withCredentials: true } });	// For cookies with SeqId
-
-// var receive = function () {
-//     $.get(mcastUrl)
-//         .done(function (data) {
-//             console.log(data);
-//         }).always(function () {
-//             receive();
-//         })
-// }
-// async function subscribe() {
-//     let response = await fetch(mcastUrl);
-//     if (response.status == 502) {
-//         // Status 502 is a connection timeout error,
-//         // may happen when the connection was pending for too long,
-//         // and the remote server or a proxy closed it
-//         // let's reconnect
-//         await new Promise(resolve => setTimeout(resolve, 10000));
-//         await subscribe();
-//     } else if (response.status != 200) {
-//         // An error - let's show it
-//         console.log(response.statusText);
-//         // Reconnect in one second
-//         await new Promise(resolve => setTimeout(resolve, 10000));
-//         await subscribe();
-//     } else {
-//         // Get and show the message
-//         let message = await response.text();
-//         console.log(message);
-//         // Call subscribe() again to get the next message
-//         await new Promise(resolve => setTimeout(resolve, 10000));
-//         await subscribe();
-//     }
-// }
-
-
-
-// receive();

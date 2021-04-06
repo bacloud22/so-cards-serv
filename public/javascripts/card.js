@@ -141,8 +141,3 @@ function generateSvg() {
 function langChange(el) {
     document.body.setAttribute('lang', el.value);
 }
-
-// var _id;
-// var mcastUrl;
-// $.ajaxSetup({ xhrFields: { withCredentials: true } });	// For cookies with SeqId
-// $.post(mcastUrl, "holla");
