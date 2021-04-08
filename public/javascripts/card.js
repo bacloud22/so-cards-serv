@@ -26,7 +26,22 @@ var version
 // and extracts values based on that version
 function reverse(url) {
     // Get and Substract version
-    // [url, _id] = url.split('===')
+    [url, _id] = url.split('===')
+    var sock = new SockJS('http://localhost:3000/echo');
+    sock.onopen = function () {
+        console.log('open');
+        sock.send(_id);
+        console.log('Message sent to ', _id);
+    };
+
+    sock.onmessage = function (e) {
+        console.log('broadcated somewhere from: ', e.data);
+        sock.close();
+    };
+
+    sock.onclose = function () {
+        console.log('close');
+    };
     // mcastUrl = "https://demo.httprelay.io/mcast/" + _id
     version = parseInt(url.charAt(url.length - 1))
     url = url.substring(0, url.length - 2)

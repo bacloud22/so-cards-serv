@@ -56,16 +56,31 @@ function copyLink() {
     copyText.setSelectionRange(0, 99999); /* For mobile devices */
     document.execCommand("copy");
 }
-
+var currentId;
 function handleDom() {
     // for multi-selects, we need special handling
     const formJSON = Object.fromEntries(formData.entries());
     const encodedString = codify(formJSON)
     _id = (Math.random().toString(36).substr(4))
+    currentId = _id
     // mcastUrl = "https://demo.httprelay.io/mcast/" + _id
-    // const hotLink = encodedString + '===' + _id
-    // console.log(hotLink)
-
+    const hotLink = encodedString + '===' + _id
+    console.log(hotLink)
+    var sock = new SockJS('http://localhost:3000/echo');
+    sock.onopen = function () {
+        console.log('open');
+        sock.send(_id);
+    };
+    sock.onmessage = function (e) {
+        console.log('message got from: ', e.data);
+        if(e.data === currentId) {
+            console.log("A new follower is landing")
+        }
+        // sock.close();
+    };
+    sock.onclose = function () {
+        console.log('close');
+    };
     // const simpleURL = new URLSearchParams(formJSON).toString()
     new QRCode(document.getElementById("qrcode"), encodedString);
     var canvas = document.getElementById('qrcode').querySelector('canvas');

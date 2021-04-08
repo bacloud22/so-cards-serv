@@ -9,6 +9,7 @@ var usersRouter = require('./routes/users');
 const helmet = require("helmet");
 
 var app = express();
+
 app.use(helmet({
   contentSecurityPolicy: false,
 }));
@@ -24,6 +25,9 @@ app.use(favicon(path.join(__dirname, '/public/images', 'favicon.png')))
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
+
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

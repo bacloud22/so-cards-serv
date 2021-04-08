@@ -8,24 +8,55 @@ var app = require('../app');
 var debug = require('debug')('dating:server');
 var http = require('http');
 
+
 /**
  * Get port from environment and store in Express.
  */
+// app.use(express.static(path.join(__dirname, '/')))
 
 var port = normalizePort(process.env.PORT || '3000');
-app.set('port', port);
+// app.set('port', port);
 
 /**
  * Create HTTP server.
  */
 
 var server = http.createServer(app);
+var sockjs = require('sockjs');
+
+// 1. Echo sockjs server
+var sockjs_opts = { sockjs_url: "http://cdn.jsdelivr.net/sockjs/1.0.1/sockjs.min.js" };
+
+var sockjs_echo = sockjs.createServer(sockjs_opts);
+var clients = {};
+var uid;
+sockjs_echo.on('connection', function (conn) {
+  conn.on('data', function (message) {
+    console.log("got your uid: " + message)
+    conn.write(message);
+    uid = message
+  });
+  clients[uid] = conn;
+  for (key in clients) {
+    if (clients.hasOwnProperty(key)) {
+      clients[key].write(uid);
+    }
+  }
+
+  // conn.on('close', function () {
+  //   delete clients[conn.id];
+  // });
+});
+
+sockjs_echo.installHandlers(server, { prefix: '/echo' });
 
 /**
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port);
+server.listen(3000, () => {
+  console.log('listening on *:3000');
+});
 server.on('error', onError);
 server.on('listening', onListening);
 
