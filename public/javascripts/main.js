@@ -1,3 +1,29 @@
+var options = {
+    classname: "toast",
+    transition: "fade",
+    insertBefore: true,
+    duration: 4000,
+    enableSounds: true,
+    autoClose: false,
+    progressBar: true,
+    sounds: {
+        info: "../sounds/info/1.mp3",
+        success: "../sounds/success/1.mp3",
+        warning: "../sounds/warning/1.mp3",
+        error: "../sounds/error/1.mp3",
+    },
+
+    onShow: function (type) {},
+
+    onHide: function (type) {},
+
+    prependTo: document.body.childNodes[0]
+};
+
+var toast = new Toasty(options);
+
+// this show an informational message:
+toast.info("Here is some information!");
 String.prototype.hashCode = function () {
     var hash = 0, i, chr;
     if (this.length === 0) return hash;
