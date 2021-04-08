@@ -13,17 +13,16 @@ var options = {
         error: "../sounds/error/1.mp3",
     },
 
-    onShow: function (type) {},
+    onShow: function (type) { },
 
-    onHide: function (type) {},
+    onHide: function (type) { },
 
     prependTo: document.body.childNodes[0]
 };
 
 var toast = new Toasty(options);
 
-// this show an informational message:
-toast.info("Here is some information!");
+
 String.prototype.hashCode = function () {
     var hash = 0, i, chr;
     if (this.length === 0) return hash;
@@ -83,6 +82,7 @@ function copyLink() {
     document.execCommand("copy");
 }
 var currentId;
+var counter = 0;
 function handleDom() {
     // for multi-selects, we need special handling
     const formJSON = Object.fromEntries(formData.entries());
@@ -99,8 +99,9 @@ function handleDom() {
     };
     sock.onmessage = function (e) {
         console.log('message got from: ', e.data);
-        if(e.data === currentId) {
+        if (e.data === currentId && (counter++ > 0) ){
             console.log("A new follower is landing")
+            toast.success("A new follower is landing")
         }
         // sock.close();
     };
@@ -108,18 +109,24 @@ function handleDom() {
         console.log('close');
     };
     // const simpleURL = new URLSearchParams(formJSON).toString()
-    new QRCode(document.getElementById("qrcode"), encodedString);
-    var canvas = document.getElementById('qrcode').querySelector('canvas');
-    var dataURL = canvas.toDataURL();
+    try {
+        new QRCode(document.getElementById("qrcode"), hotLink);
+        var canvas = document.getElementById('qrcode').querySelector('canvas');
+        var dataURL = canvas.toDataURL();
+        document.querySelector('#link').insertAdjacentHTML('beforeend', "<br><a download='my_qr_code.png' href='" + dataURL + "'>Download QR code</a> | ");
+    } catch (error) {
+        toast.error("Sorry, there was a problem generating the QR code. It is probably due to a lot of information you entered.");
+    }
+
     var a = document.createElement('a');
     var linkText = document.createTextNode("Share my link");
     a.appendChild(linkText);
     a.title = "My link";
-    a.href = encodedString;
-    document.querySelector('#link').insertAdjacentHTML('beforeend', "<br><a download='my_qr_code.png' href='" + dataURL + "'>Download QR code</a> | ");
+    a.href = hotLink;
     document.querySelector('#link').appendChild(a);
-    document.querySelector('#link').insertAdjacentHTML('beforeend', "<br><div style='display:flex'><input type='text' value='" + encodedString + "' id='to_copy' readonly><i class='fa fa-copy icon' onclick='copyLink()'></i></div>");
-    console.log(encodedString);
+    document.querySelector('#link').insertAdjacentHTML('beforeend', "<br><div style='display:flex'><input type='text' value='" + hotLink + "' id='to_copy' readonly><i class='fa fa-copy icon' onclick='copyLink()'></i></div>");
+    // this show an informational message:
+    toast.info("Here you get live notifications when anyone is landing on your card! When you close you lose track on them.");
 }
 
 
