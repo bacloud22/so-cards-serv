@@ -83,6 +83,7 @@ function copyLink() {
 }
 var currentId;
 var counter = 0;
+var matchingCounter = 0;
 function handleDom() {
     // for multi-selects, we need special handling
     const formJSON = Object.fromEntries(formData.entries());
@@ -99,7 +100,10 @@ function handleDom() {
     };
     sock.onmessage = function (e) {
         console.log('message got from: ', e.data);
-        if (e.data === currentId && (counter++ > 0) ){
+        if (e.data === currentId && (counter++ > 0)) {
+            matchingCounter++
+            var htmlCounter = document.getElementById("counter");
+            htmlCounter.innerHTML = "Number of visitors of your card: " + matchingCounter
             console.log("A new follower is landing")
             toast.success("A new follower is landing")
         }
