@@ -92,7 +92,7 @@ function handleDom() {
     // mcastUrl = "https://demo.httprelay.io/mcast/" + _id
     const hotLink = encodedString + '===' + _id
     console.log(hotLink)
-    var sock = new SockJS('http://localhost:3000/echo');
+    var sock = new SockJS('https://so-c.herokuapp.com/echo');
     sock.onopen = function () {
         console.log('open');
         sock.send(_id);

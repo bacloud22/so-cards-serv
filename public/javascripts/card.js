@@ -27,7 +27,7 @@ var version
 function reverse(url) {
     // Get and Substract version
     [url, _id] = url.split('===')
-    var sock = new SockJS('http://localhost:3000/echo');
+    var sock = new SockJS('https://so-c.herokuapp.com/echo');
     sock.onopen = function () {
         console.log('open');
         sock.send(_id);
