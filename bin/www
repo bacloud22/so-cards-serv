@@ -8,13 +8,15 @@ var app = require('../app');
 var debug = require('debug')('dating:server');
 var http = require('http');
 
-
+const dotenv    = require('dotenv')
+dotenv.config()
+console.log(`Your port is ${process.env.PORT}`) // 8626
 /**
  * Get port from environment and store in Express.
  */
 // app.use(express.static(path.join(__dirname, '/')))
 
-var port = normalizePort(process.env.PORT || '80');
+var port = normalizePort(process.env.PORT || '3000');
 // app.set('port', port);
 
 /**
@@ -54,8 +56,8 @@ sockjs_echo.installHandlers(server, { prefix: '/echo' });
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(80, () => {
-  console.log('listening on *:80');
+server.listen(port, () => {
+  console.log('listening on *:some port');
 });
 server.on('error', onError);
 server.on('listening', onListening);
